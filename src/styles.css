@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+.header-title {
+  padding-top: 10rem;
+  font-weight: bold;
+  font-size: 60px;
+  color: black;
+}
+
+.header-title > span {
+  background-color: rgba(254,222,255, 0.6);
+  padding: 0.7rem;
+}
+
+.header-subtitle {
+  font-weight: bold;
+  font-size: 25px;
+  color: black;
+}
+
+.header-subtitle > span {
+  background-color: rgba(254,222,255, 0.6);
+  padding: 0.7rem;
+}
+
+.card-selection:hover {
+  border: 3px solid rgb(254,222,255);
+  font-weight: bold;
+}
+
+.bg-img-homepage {
+  height: 130vh;
+  padding: 0;
+  width: 100%;
+  background: url('assets/img/artist-color.jpg') no-repeat center center fixed;
+  opacity: 85%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
