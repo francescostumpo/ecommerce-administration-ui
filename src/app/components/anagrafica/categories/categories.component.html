@@ -1,0 +1,132 @@
+<div class="bg-img-homepage">
+  <section class="from-fixed-navbar">
+    <div class="container-fluid">
+      <div class="row row-margin">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="card mb-4">
+            <div class="card-body row">
+              <p class="mt-3 ml-3" style="font-size: 24px; font-weight: bold;">Gestisci Category</p>
+              <div class="ml-auto mt-3 mr-3">
+                <button ngbButton class="btn btn-outline-aragon" (click)="toggleCreateOrUpdatePanel('create')">Crea
+                  una nuova Category
+                </button>
+              </div>
+            </div>
+            <hr>
+            <div class="card-body row mb-3">
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <div class="card">
+                  <div class="card-body mt-2">
+                    <p style="font-weight: bold">Categories disponibili</p>
+                    <table class="table table-bordered">
+                      <thead>
+                      <tr>
+                        <th></th>
+                        <th>Nome</th>
+                        <th></th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let category of categoryList; index as i">
+                        <td>{{i + 1}}</td>
+                        <td>{{category.name}}</td>
+                        <td class="text-center"><span style="cursor: pointer">
+                          <fa-icon [icon]="faPencilAlt"(click)="moveForUpdate(category)"></fa-icon> &nbsp;
+                          <fa-icon [icon]="faPlusCircle"(click)="toggleAddSubCategoryPanel(category)"></fa-icon> &nbsp;
+                          <fa-icon [icon]="faEye"(click)="toggleRemoveSubCategoryPanel(category)"></fa-icon>
+                        </span>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <div class="card" *ngIf="isPanelUpdateVisible">
+                  <div class="card-body mt-2">
+                    <div class="form-group row">
+                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Nome
+                        Category</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <input type="text" class="form-control" id="nomeUpdate" [(ngModel)]="categoryForUpdate.name">
+                      </div>
+                    </div>
+                    <button class="btn btn-outline-aragon mt-2 col-xl-12 col-lg-12 col-md-12 col-sm-12"
+                            (click)="createOrUpdateCategory('update')">Aggiorna Category
+                    </button>
+                  </div>
+                </div>
+                <div class="card" *ngIf="isPanelCreateVisible">
+                  <div class="card-body mt-2">
+                    <div class="form-group row">
+                      <label for="nome" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Nome Category</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <input type="text" class="form-control" id="nome" [(ngModel)]="category.name">
+                      </div>
+                    </div>
+                    <button class="btn btn-outline-aragon mt-2 col-xl-12 col-lg-12 col-md-12 col-sm-12"
+                            (click)="createOrUpdateCategory('create')">Crea Category
+                    </button>
+                  </div>
+                </div>
+                <div class="card" *ngIf="isPanelAddVisible">
+                  <div class="card-body mt-2">
+                    <div class="form-group row">
+                      <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                          <th></th>
+                          <th>SubCategories disponibili</th>
+                          <th class="text-center">Aggiungi</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let subCategory of subCategoryList; index as i">
+                          <td>{{i + 1}}</td>
+                          <td>{{subCategory.name}}</td>
+                          <td class="text-center"><span style="cursor: pointer" >
+                            <fa-icon *ngIf="(subCategory.categoryId === null)" [icon]="faPlusCircle"(click)="addSubCategoryToCategory(subCategory)"></fa-icon> &nbsp;
+                            <span *ngIf="(categoryForUpdate._id !== subCategory.categoryId) && (subCategory.categoryId !== null)"> Assegnata altra Category</span>
+                            <span *ngIf="(categoryForUpdate._id === subCategory.categoryId) && (subCategory.categoryId !== null)"> Assegnata</span>
+                          </span>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="card" *ngIf="isPanelRemoveVisible">
+                  <div class="card-body mt-2">
+                    <div class="form-group row">
+                      <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                          <th></th>
+                          <th>SubCategories presenti in {{categoryForUpdate.name}}</th>
+                          <th class="text-center">Rimuovi</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let subCategory of subCategoryList; index as i">
+                          <td>{{i + 1}}</td>
+                          <td>{{subCategory.name}}</td>
+                          <td class="text-center"><span style="cursor: pointer">
+                          <fa-icon [icon]="faMinusCircle"(click)="deleteSubCategoryFromCategory(subCategory)"></fa-icon> &nbsp;
+                        </span>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

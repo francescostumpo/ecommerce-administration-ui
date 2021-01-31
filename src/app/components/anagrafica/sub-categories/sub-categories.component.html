@@ -1,0 +1,260 @@
+<div class="bg-img-homepage">
+  <section class="from-fixed-navbar">
+    <div class="container-fluid">
+      <div class="row row-margin">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="card mb-4">
+            <div class="card-body row">
+              <p class="mt-3 ml-3" style="font-size: 24px; font-weight: bold;">Gestisci SubCategory</p>
+              <div class="ml-auto mt-3 mr-3">
+                <button ngbButton class="btn btn-outline-aragon" (click)="toggleCreateOrUpdatePanel('create')">Crea
+                  una nuova Category
+                </button>
+              </div>
+            </div>
+            <hr>
+            <div class="card-body row mb-3">
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <div class="card">
+                  <div class="card-body mt-2">
+                    <p style="font-weight: bold">SubCategories disponibili</p>
+                    <table class="table table-bordered">
+                      <thead>
+                      <tr>
+                        <th></th>
+                        <th>Nome</th>
+                        <th></th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let subCategory of subCategoryList; index as i">
+                        <td>{{i + 1}}</td>
+                        <td>{{subCategory.name}}</td>
+                        <td class="text-center"><span style="cursor: pointer">
+                          <fa-icon [icon]="faPencilAlt"(click)="moveForUpdate(subCategory)"></fa-icon> &nbsp;
+                        </span>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <div class="card" *ngIf="isPanelUpdateVisible">
+                  <div class="card-body mt-2">
+                    <div class="form-group row">
+                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Nome
+                        Category</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <input type="text" class="form-control" id="nomeUpdate" [(ngModel)]="subCategoryForUpdate.name">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Colore</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <select class="form-control" id="colorUpdate" [(ngModel)]="subCategoryForUpdate.options.color">
+                          <option value="true" ngValue="true">true</option>
+                          <option value="false" ngValue="false">false</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Taglia</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <select class="form-control" id="sizeUpdate" [(ngModel)]="subCategoryForUpdate.options.size">
+                          <option value="true" ngValue="true">true</option>
+                          <option value="false" ngValue="false">false</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Genere</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <select class="form-control" id="genreUpdate" [(ngModel)]="subCategoryForUpdate.options.genre">
+                          <option value="true" ngValue="true">true</option>
+                          <option value="false" ngValue="false">false</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Forma</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <select class="form-control" id="shapeUpdate" [(ngModel)]="subCategoryForUpdate.options.shape">
+                          <option value="true" ngValue="true">true</option>
+                          <option value="false" ngValue="false">false</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Dimensione Puzzle</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <select class="form-control" id="puzzleDimensionUpdate" [(ngModel)]="subCategoryForUpdate.options.puzzleDimension">
+                          <option value="true" ngValue="true">true</option>
+                          <option value="false" ngValue="false">false</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Dimensione Cuscino</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <select class="form-control" id="pillowDimensionUpdate" [(ngModel)]="subCategoryForUpdate.options.pillowDimension">
+                          <option value="true" ngValue="true">true</option>
+                          <option value="false" ngValue="false">false</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Dimensione Tele</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <select class="form-control" id="teleDimensionUpdate" [(ngModel)]="subCategoryForUpdate.options.teleDimension">
+                          <option value="true" ngValue="true">true</option>
+                          <option value="false" ngValue="false">false</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Dimensione Mouse</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <select class="form-control" id="mouseDimensionUpdate" [(ngModel)]="subCategoryForUpdate.options.mouseDimension">
+                          <option value="true" ngValue="true">true</option>
+                          <option value="false" ngValue="false">false</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Dimensione Post Sociale</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <select class="form-control" id="socialDimensionUpdate" [(ngModel)]="subCategoryForUpdate.options.socialDimension">
+                          <option value="true" ngValue="true">true</option>
+                          <option value="false" ngValue="false">false</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Proprietà Custom</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <select class="form-control" id="customUpdate" [(ngModel)]="subCategoryForUpdate.options.custom">
+                          <option value="true" ngValue="true">true</option>
+                          <option value="false" ngValue="false">false</option>
+                        </select>
+                      </div>
+                    </div>
+                    <button class="btn btn-outline-aragon mt-2 col-xl-12 col-lg-12 col-md-12 col-sm-12"
+                            (click)="createOrUpdateSubCategory('update')">Aggiorna SubCategory
+                    </button>
+                  </div>
+                </div>
+                <div class="card" *ngIf="isPanelCreateVisible">
+                  <div class="card-body mt-2">
+                    <div class="form-group row">
+                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Nome
+                        Category</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <input type="text" class="form-control" id="nome" [(ngModel)]="subCategory.name">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Colore</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <select class="form-control" id="color" [(ngModel)]="subCategoryOption.color">
+                          <option value="true" ngValue="true">true</option>
+                          <option value="false" ngValue="false">false</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Taglia</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <select class="form-control" id="size" [(ngModel)]="subCategoryOption.size">
+                          <option value="true" ngValue="true">true</option>
+                          <option value="false" ngValue="false">false</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Genere</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <select class="form-control" id="genre" [(ngModel)]="subCategoryOption.genre">
+                          <option value="true" ngValue="true">true</option>
+                          <option value="false" ngValue="false">false</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Forma</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <select class="form-control" id="shape" [(ngModel)]="subCategoryOption.shape">
+                          <option value="true" ngValue="true">true</option>
+                          <option value="false" ngValue="false">false</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Dimensione Puzzle</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <select class="form-control" id="puzzleDimension" [(ngModel)]="subCategoryOption.puzzleDimension">
+                          <option value="true" ngValue="true">true</option>
+                          <option value="false" ngValue="false">false</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Dimensione Cuscino</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <select class="form-control" id="pillowDimension" [(ngModel)]="subCategoryOption.pillowDimension">
+                          <option value="true" ngValue="true">true</option>
+                          <option value="false" ngValue="false">false</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Dimensione Tele</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <select class="form-control" id="teleDimension" [(ngModel)]="subCategoryOption.teleDimension">
+                          <option value="true" ngValue="true">true</option>
+                          <option value="false" ngValue="false">false</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Dimensione Mouse</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <select class="form-control" id="mouseDimension" [(ngModel)]="subCategoryOption.mouseDimension">
+                          <option value="true" ngValue="true">true</option>
+                          <option value="false" ngValue="false">false</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Dimensione Post Sociale</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <select class="form-control" id="socialDimension" [(ngModel)]="subCategoryOption.socialDimension">
+                          <option value="true" ngValue="true">true</option>
+                          <option value="false" ngValue="false">false</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Proprietà Custom</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <select class="form-control" id="custom" [(ngModel)]="subCategoryOption.custom">
+                          <option value="true" ngValue="true">true</option>
+                          <option value="false" ngValue="false">false</option>
+                        </select>
+                      </div>
+                    </div>
+                    <button class="btn btn-outline-aragon mt-2 col-xl-12 col-lg-12 col-md-12 col-sm-12"
+                            (click)="createOrUpdateSubCategory('create')">Crea SubCategory
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+

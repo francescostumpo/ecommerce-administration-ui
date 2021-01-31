@@ -1,0 +1,81 @@
+<div class="bg-img-homepage">
+  <section class="from-fixed-navbar">
+    <div class="container-fluid">
+      <div class="row row-margin">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="card mb-4">
+            <div class="card-body row">
+              <p class="mt-3 ml-3" style="font-size: 24px; font-weight: bold;">Gestisci Tags</p>
+              <div class="ml-auto mt-3 mr-3">
+                <button ngbButton class="btn btn-outline-aragon" (click)="toggleCreateOrUpdatePanel('create')">Crea
+                  un nuovo Tag
+                </button>
+              </div>
+            </div>
+            <hr>
+            <div class="card-body row mb-3">
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <div class="card">
+                  <div class="card-body mt-2">
+                    <p style="font-weight: bold">Tags disponibili</p>
+                    <table class="table table-bordered">
+                      <thead>
+                      <tr>
+                        <th></th>
+                        <th>Nome</th>
+                        <th></th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let tag of tagList; index as i">
+                        <td>{{i + 1}}</td>
+                        <td>{{tag.tagName}}</td>
+                        <td class="text-center"><span style="cursor: pointer">
+                          <fa-icon [icon]="faPencilAlt"(click)="moveForUpdate(tag)"></fa-icon> &nbsp;
+                        </span>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <div class="card" *ngIf="isPanelUpdateVisible">
+                  <div class="card-body mt-2">
+                    <div class="form-group row">
+                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Nome
+                        Tag</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <input type="text" class="form-control" id="nomeUpdate" [(ngModel)]="tagForUpdate.tagName">
+                      </div>
+                    </div>
+                    <button class="btn btn-outline-aragon mt-2 col-xl-12 col-lg-12 col-md-12 col-sm-12"
+                            (click)="createOrUpdateTag('update')">Aggiorna Tag
+                    </button>
+                  </div>
+                </div>
+                <div class="card" *ngIf="isPanelCreateVisible">
+                  <div class="card-body mt-2">
+                    <div class="form-group row">
+                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Nome
+                        Tag</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <input type="text" class="form-control" id="nome" [(ngModel)]="tag.tagName">
+                      </div>
+                    </div>
+                    <button class="btn btn-outline-aragon mt-2 col-xl-12 col-lg-12 col-md-12 col-sm-12"
+                            (click)="createOrUpdateTag('create')">Crea Tag
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+

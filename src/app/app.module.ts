@@ -12,6 +12,12 @@ import { OrdersComponent } from './components/orders/orders.component';
 import { StockComponent } from './components/stock/stock.component';
 import { AnagraficaComponent } from './components/anagrafica/anagrafica.component';
 import { ReportingComponent } from './components/reporting/reporting.component';
+import { CategoriesComponent } from './components/anagrafica/categories/categories.component';
+import { SubCategoriesComponent } from './components/anagrafica/sub-categories/sub-categories.component';
+import { TagsComponent } from './components/anagrafica/tags/tags.component';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,11 +30,17 @@ import { ReportingComponent } from './components/reporting/reporting.component';
     StockComponent,
     AnagraficaComponent,
     ReportingComponent,
+    CategoriesComponent,
+    SubCategoriesComponent,
+    TagsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    HttpClientModule,
+    NgbModule,
+    FontAwesomeModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

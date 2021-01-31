@@ -1,8 +1,266 @@
 <div class="bg-img-homepage">
-  <p class="text-center header-title"><span>Catalogo</span></p>
-  <section class="bg-section">
+  <section class="from-fixed-navbar">
     <div class="container-fluid">
       <div class="row row-margin">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="card mb-4">
+            <div class="card-body row">
+              <p class="mt-3 ml-3" style="font-size: 24px; font-weight: bold;">Gestisci Catalogo</p>
+              <div class="ml-auto mt-3 mr-3">
+                <button ngbButton class="btn btn-outline-aragon" (click)="toggleCreateOrUpdatePanel('create')">Crea
+                  un nuovo Prodotto
+                </button>
+              </div>
+            </div>
+            <hr>
+            <div class="card-body row mb-3">
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <div class="card">
+                  <div class="card-body mt-2">
+                    <p style="font-weight: bold">Prodotti disponibili</p>
+                    <table class="table table-bordered">
+                      <thead>
+                      <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Modello</th>
+                        <th>Prezzo</th>
+                        <th></th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let product of productList; index as i">
+                        <td>{{i + 1}}</td>
+                        <td>{{product.name}}</td>
+                        <td>{{product.productModel}}</td>
+                        <td>{{product.price}}</td>
+                        <td class="text-center"><span style="cursor: pointer">
+                          <fa-icon [icon]="faPencilAlt"(click)="moveForUpdate(product)"></fa-icon> &nbsp;
+                          <fa-icon [icon]="faPlusCircle"(click)="toggleAddTagSubCategoryPanel(product)"></fa-icon> &nbsp;
+                          <fa-icon [icon]="faEye"(click)="toggleRemoveTagPanel(product)"></fa-icon>
+                        </span>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <div class="card" *ngIf="isPanelUpdateVisible">
+                  <div class="card-body mt-2">
+                    <div class="form-group row">
+                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Nome
+                        Prodotto</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <input type="text" class="form-control" id="nomeUpdate" [(ngModel)]="productForUpdate.name">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="modelloUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Modello</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <input type="text" class="form-control" id="modelloUpdate" [(ngModel)]="productForUpdate.productModel">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="descrizioneUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Descrizione</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <textarea type="text" class="form-control" id="descrizioneUpdate" [(ngModel)]="productForUpdate.productDescription"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="prezzoUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Prezzo</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <input type="text" class="form-control" id="prezzoUpdate" [(ngModel)]="productForUpdate.price">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Varianti</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <table class="table table-bordered">
+                          <thead>
+                          <tr>
+                            <th></th>
+                            <th>Colore</th>
+                            <th>URL</th>
+                            <th><span style="cursor: pointer"><fa-icon [icon]="faPlusCircle"(click)="addRow('update')"></fa-icon></span> </th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr *ngFor="let variant of productForUpdate.variants; index as i">
+                            <td>{{i + 1}}</td>
+                            <td><input type="text" class="form-control" [(ngModel)]="variant.color"></td>
+                            <td><input type="text" class="form-control" [(ngModel)]="variant.imageUrl"></td>
+                            <td class="text-center align-middle"><span style="cursor: pointer"><fa-icon [icon]="faMinusCircle"(click)="deleteRow(variant)"></fa-icon></span></td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <button class="btn btn-outline-aragon mt-2 col-xl-12 col-lg-12 col-md-12 col-sm-12"
+                            (click)="createOrUpdateProduct('update')">Aggiorna Prodotto
+                    </button>
+                  </div>
+                </div>
+                <div class="card" *ngIf="isPanelCreateVisible">
+                  <div class="card-body mt-2">
+                    <div class="form-group row">
+                      <label for="nome" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Nome
+                        Prodotto</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <input type="text" class="form-control" id="nome" [(ngModel)]="product.name">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="modello" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Modello</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <input type="text" class="form-control" id="modello" [(ngModel)]="product.productModel">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="descrizione" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Descrizione</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <textarea type="text" class="form-control" id="descrizione" [(ngModel)]="product.productDescription"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="prezzo" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Prezzo</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <input type="text" class="form-control" id="prezzo" [(ngModel)]="product.price">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Varianti</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <table class="table table-bordered">
+                          <thead>
+                          <tr>
+                            <th></th>
+                            <th>Colore</th>
+                            <th>URL</th>
+                            <th><span style="cursor: pointer"><fa-icon [icon]="faPlusCircle"(click)="addRow('create')"></fa-icon></span> </th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr *ngFor="let variant of product.variants; index as i">
+                            <td>{{i + 1}}</td>
+                            <td><input type="text" class="form-control" [(ngModel)]="variant.color"></td>
+                            <td><input type="text" class="form-control" [(ngModel)]="variant.imageUrl"></td>
+                            <td class="text-center align-middle"><span style="cursor: pointer"><fa-icon [icon]="faMinusCircle"(click)="deleteRow(variant)"></fa-icon></span></td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <button class="btn btn-outline-aragon mt-2 col-xl-12 col-lg-12 col-md-12 col-sm-12"
+                            (click)="createOrUpdateProduct('create')">Crea Prodotto
+                    </button>
+                  </div>
+                </div>
+                <div class="card" *ngIf="isPanelAddVisible">
+                  <div class="card-body mt-2">
+                    <p style="font-weight: bold">{{productForUpdate.name}} - {{productForUpdate.productModel}}</p>
+                    <div class="form-group row">
+                      <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                          <th></th>
+                          <th>Tags disponibili</th>
+                          <th class="text-center">Aggiungi</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let tag of tagList; index as i">
+                          <td>{{i + 1}}</td>
+                          <td>{{tag.tagName}}</td>
+                          <td class="text-center"><span style="cursor: pointer" >
+                            <fa-icon *ngIf="!checkAssignedTag(tag)" [icon]="faPlusCircle"(click)="addTagToProduct(tag)"></fa-icon>
+                            <span *ngIf="checkAssignedTag(tag)"> Assegnato</span>
+                          </span>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="card-body mt-2">
+                    <div class="form-group row">
+                      <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                          <th></th>
+                          <th>SubCategories disponibili</th>
+                          <th class="text-center">Aggiungi</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let subCategory of subCategoryList; index as i">
+                          <td>{{i + 1}}</td>
+                          <td>{{subCategory.name}}</td>
+                          <td class="text-center"><span style="cursor: pointer" >
+                            <fa-icon *ngIf="(productForUpdate.productSubCategoryId !== null) && (productForUpdate.productSubCategoryId !== subCategory._id)" [icon]="faPlusCircle"(click)="addSubCategoryToProduct(subCategory)"></fa-icon>
+                            <span *ngIf="(productForUpdate.productSubCategoryId === subCategory._id)"> Assegnata</span>
+                          </span>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="card" *ngIf="isPanelRemoveTagVisible">
+                  <div class="card-body mt-2">
+                    <p style="font-weight: bold">{{productForUpdate.name}} - {{productForUpdate.productModel}}</p>
+                    <div class="form-group row">
+                      <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                          <th></th>
+                          <th>Tags assegnati</th>
+                          <th class="text-center">Rimuovi</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let tag of productTagList; index as i">
+                          <td>{{i + 1}}</td>
+                          <td>{{tag.tagName}}</td>
+                          <td class="text-center"><span style="cursor: pointer" >
+                            <fa-icon [icon]="faMinusCircle"(click)="deleteTagfromProduct(tag)"></fa-icon> &nbsp;
+                          </span>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="card-body mt-2">
+                    <div class="form-group row">
+                      <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                          <th></th>
+                          <th>SubCategories presenti</th>
+                          <th class="text-center">Rimuovi</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngIf="productForUpdate.productSubCategoryId !== 'Uncategorized'">
+                          <td>1</td>
+                          <td>{{subCategory.name}}</td>
+                          <td class="text-center"><span style="cursor: pointer">
+                          <fa-icon [icon]="faMinusCircle"(click)="deleteSubCategoryFromProduct(subCategory)"></fa-icon> &nbsp;
+                        </span>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>

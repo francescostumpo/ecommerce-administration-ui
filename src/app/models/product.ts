@@ -6,12 +6,11 @@ export class Product {
  _rev: string;
  name: string;
  categoryId: string;
- categoryName: string;
  productSubCategoryId: string;
- productSubCategoryName: string;
  productDescription: string;
  productModel: string;
  price: number;
- tags: Array<Tag>;
+ instagramPublished: boolean;
+ tags: Array<string>;
  variants: Array<Variant>;
 }

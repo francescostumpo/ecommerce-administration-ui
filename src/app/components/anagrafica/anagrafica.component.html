@@ -1,8 +1,34 @@
 <div class="bg-img-homepage">
-  <p class="text-center header-title"><span>Anagrafica</span></p>
-  <section class="bg-section">
+  <section class="from-fixed-navbar">
     <div class="container-fluid">
       <div class="row row-margin">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+          <div class="card card-selection mt-5">
+            <div class="card-body text-center mt-2">
+              <p class="mt-2" style="font-size: 24px; font-weight: bold;">Categories</p>
+              <p class="mt-4">Crea/Aggiorna le categories <br>gestite da Aragon.</p>
+              <button class="btn btn-outline-aragon mt-3" (click)="goToView('categories')">Gestisci</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+          <div class="card card-selection mt-5">
+            <div class="card-body text-center mt-2">
+              <p class="mt-2" style="font-size: 24px; font-weight: bold;">SubCategories</p>
+              <p class="mt-4">Crea/Aggiorna le subCategories <br>gestite da Aragon.</p>
+              <button class="btn btn-outline-aragon mt-3" (click)="goToView('subCategories')">Gestisci</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+          <div class="card card-selection mt-5">
+            <div class="card-body text-center mt-2">
+              <p class="mt-2" style="font-size: 24px; font-weight: bold;">Tags</p>
+              <p class="mt-4">Crea/Aggiorna un tag <br>da etichettare sui prodotti di Aragon.</p>
+              <button class="btn btn-outline-aragon mt-3" (click)="goToView('tags')">Gestisci</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
