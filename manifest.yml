@@ -1,0 +1,9 @@
+---
+applications:
+  - instances: 1
+    name: aragon-administration-ui
+    memory: 32M
+    disk_quota: 32M
+    buildpack: staticfile_buildpack
+    domain: eu-gb.mybluemix.net
+    host: aragon-pizzo

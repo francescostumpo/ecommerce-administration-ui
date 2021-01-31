@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  aragonBackendUrl: 'https://aragon-ecommerce-backend.eu-gb.mybluemix.net'
 };
