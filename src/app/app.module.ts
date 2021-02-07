@@ -18,6 +18,7 @@ import { TagsComponent } from './components/anagrafica/tags/tags.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import {DataTablesModule} from 'angular-datatables';
 
 @NgModule({
   declarations: [
@@ -34,14 +35,15 @@ import {HttpClientModule} from '@angular/common/http';
     SubCategoriesComponent,
     TagsComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    NgbModule,
-    FontAwesomeModule,
-    FormsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        NgbModule,
+        FontAwesomeModule,
+        FormsModule,
+        DataTablesModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

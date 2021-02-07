@@ -8,6 +8,7 @@ import {ProductService} from '../../services/product.service';
 import {TagService} from '../../services/tag.service';
 import {Tag} from '../../models/tag';
 import {Variant} from '../../models/variant';
+import {Subject} from 'rxjs';
 
 
 @Component({
@@ -37,6 +38,9 @@ export class CatalogComponent implements OnInit {
   tagList: Array<Tag>;
   productTagList: Array<Tag>;
 
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>();
+
   constructor(private subCategoryService: SubCategoryService, private tagsService: TagService, private productService: ProductService) {
     this.product = new Product();
     this.productForUpdate = new Product();
@@ -48,6 +52,10 @@ export class CatalogComponent implements OnInit {
     this.getAllProducts();
     this.getAllSubCategories();
     this.getAllTags();
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 10
+    };
   }
 
   getAllTags(): void {
@@ -70,6 +78,7 @@ export class CatalogComponent implements OnInit {
     this.productService.getAllProducts().subscribe(res => {
       // @ts-ignore
       this.productList = res.body;
+      this.dtTrigger.next();
       console.log('Available Products: ', this.subCategoryList);
     });
   }
@@ -125,7 +134,6 @@ export class CatalogComponent implements OnInit {
       }
     }
     // tslint:disable-next-line:prefer-for-of
-    debugger;
     for (let i = 0; i < this.subCategoryList.length; i++) {
       if (this.productForUpdate.productSubCategoryId === this.subCategoryList[i]._id){
         this.subCategory = this.subCategoryList[i];

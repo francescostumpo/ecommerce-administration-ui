@@ -52,3 +52,7 @@
   background: linear-gradient(90deg, rgba(254,222,255,1) 0%, rgba(250,243,131,1) 44%, rgba(0,212,255,1) 100%);
   color: black;
 }
+
+.hover{
+  cursor: pointer;
+}
