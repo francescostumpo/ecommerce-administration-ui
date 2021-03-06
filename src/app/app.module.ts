@@ -19,6 +19,7 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {DataTablesModule} from 'angular-datatables';
+import { ArtistsComponent } from './components/anagrafica/artists/artists.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {DataTablesModule} from 'angular-datatables';
     CategoriesComponent,
     SubCategoriesComponent,
     TagsComponent,
+    ArtistsComponent,
   ],
     imports: [
         BrowserModule,

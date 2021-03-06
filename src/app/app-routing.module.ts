@@ -10,6 +10,7 @@ import {ReportingComponent} from './components/reporting/reporting.component';
 import {CategoriesComponent} from './components/anagrafica/categories/categories.component';
 import {SubCategoriesComponent} from './components/anagrafica/sub-categories/sub-categories.component';
 import {TagsComponent} from './components/anagrafica/tags/tags.component';
+import {ArtistsComponent} from './components/anagrafica/artists/artists.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'aragonMultiservice', pathMatch: 'full'},
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'aragonMultiservice/anagrafica', component: AnagraficaComponent, pathMatch: 'full'},
   {path: 'aragonMultiservice/anagrafica/categories', component: CategoriesComponent, pathMatch: 'full'},
   {path: 'aragonMultiservice/anagrafica/subCategories', component: SubCategoriesComponent, pathMatch: 'full'},
+  {path: 'aragonMultiservice/anagrafica/artists', component: ArtistsComponent, pathMatch: 'full'},
   {path: 'aragonMultiservice/anagrafica/tags', component: TagsComponent, pathMatch: 'full'},
   {path: 'aragonMultiservice/reporting', component: ReportingComponent, pathMatch: 'full'},
 ];
