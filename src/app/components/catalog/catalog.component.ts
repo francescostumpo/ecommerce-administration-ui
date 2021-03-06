@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {faPencilAlt, faTrashAlt, faPlusCircle, faMinusCircle, faEye} from '@fortawesome/free-solid-svg-icons';
 import {Product} from '../../models/product';
 import {Category} from '../../models/category';
@@ -9,6 +9,7 @@ import {TagService} from '../../services/tag.service';
 import {Tag} from '../../models/tag';
 import {Variant} from '../../models/variant';
 import {Subject} from 'rxjs';
+import {DataTableDirective} from 'angular-datatables';
 
 
 @Component({
@@ -38,6 +39,8 @@ export class CatalogComponent implements OnInit {
   tagList: Array<Tag>;
   productTagList: Array<Tag>;
 
+  @ViewChild(DataTableDirective, {static: false})
+  dtElement: DataTableDirective;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
 
@@ -53,10 +56,18 @@ export class CatalogComponent implements OnInit {
     this.getAllSubCategories();
     this.getAllTags();
     this.dtOptions = {
+      ordering: true,
       pagingType: 'full_numbers',
       pageLength: 10
     };
   }
+
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      dtInstance.destroy();
+    });
+  }
+
 
   getAllTags(): void {
     this.tagsService.getAllTags().subscribe(res => {
@@ -151,6 +162,7 @@ export class CatalogComponent implements OnInit {
     };
 
     this.productService.deleteTagFromProduct(request).subscribe(res => {
+      this.rerender();
       // @ts-ignore
       alert(res.body.message);
       this.getAllProducts();
@@ -182,6 +194,7 @@ export class CatalogComponent implements OnInit {
     this.productService.updateSubCategoryFromProduct(request).subscribe(res => {
       // @ts-ignore
       alert(res.body.message);
+      this.rerender();
       this.getAllProducts();
       this.isPanelAddVisible = false;
       this.isPanelRemoveTagVisible = false;
@@ -195,6 +208,7 @@ export class CatalogComponent implements OnInit {
     };
 
     this.productService.addTagToProduct(request).subscribe(res => {
+      this.rerender();
       // @ts-ignore
       alert(res.body.message);
       this.getAllProducts();
@@ -237,6 +251,7 @@ export class CatalogComponent implements OnInit {
       this.category = {};
       // @ts-ignore
       alert(res.body.message);
+      this.rerender();
       this.getAllProducts();
     }, error => {
       alert(error.message.message);

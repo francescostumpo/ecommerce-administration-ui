@@ -1,9 +1,140 @@
 <div class="bg-img-homepage">
-  <p class="text-center header-title"><span>Ordini</span></p>
-  <section class="bg-section">
+  <section class="from-fixed-navbar">
     <div class="container-fluid">
       <div class="row row-margin">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="card mb-4">
+            <div class="card-body row">
+              <p class="mt-3 ml-3" style="font-size: 24px; font-weight: bold;">Gestisci Ordini</p>
+              <div class="ml-auto mt-3 mr-5">
+                <div class="form-group row">
+                  <select type="text" class="form-control" id="searchStatus" [(ngModel)]="searchStatus" (change)="getOrders()">
+                    <option value="TUTTI">TUTTI</option>
+                    <option value="PAGATO">PAGATO</option>
+                    <option value="IN LAVORAZIONE">IN LAVORAZIONE</option>
+                    <option value="SPEDITO">SPEDITO</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="card-body row mb-3">
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <div class="card">
+                  <div class="card-body mt-2">
+                    <p style="font-weight: bold">Prodotti disponibili</p>
+                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+                      <thead>
+                      <tr>
+                        <th width="5%"></th>
+                        <th width="20%">Cognome</th>
+                        <th width="45%">Email</th>
+                        <th width="20%">Status</th>
+                        <th width="10%">Prezzo Totale</th>
+                        <th></th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let order of orderList; index as i">
+                        <td>{{i + 1}}</td>
+                        <td>{{order.customerSurname}}</td>
+                        <td>{{order.customerEmail}}</td>
+                        <td>{{order.status}}</td>
+                        <td>{{order.totalPrice}}</td>
+                        <td class="text-center"><span style="cursor: pointer">
+                          <fa-icon [icon]="faPencilAlt"(click)="moveForUpdate(order)"></fa-icon>
+                        </span>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <div class="card" *ngIf="isPanelUpdateVisible">
+                  <div class="card-body mt-2">
+                    <div class="form-group row">
+                      <label for="nome" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Nome</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <p class="form-control" id="nome">{{order.customerName}}</p>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="cognome" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Cognome</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <p class="form-control" id="cognome">{{order.customerSurname}}</p>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="address" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Indirizzo</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <p class="form-control" id="address">{{order.customerAddress}}</p>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="email" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Email</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <p class="form-control" id="email">{{order.customerEmail}}</p>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="phoneNumber" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Num. Telefono</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <p class="form-control" id="phoneNumber">{{order.phoneNumber}}</p>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="purchaseDate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Data Acquisto</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <p class="form-control" id="purchaseDate">{{order.purchaseDate | date}}</p>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="totalPrice" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Prezzo totale</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <p class="form-control" id="totalPrice">{{order.totalPrice}}</p>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="status" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Stato Ordine</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <select type="text" class="form-control" id="status" [(ngModel)]="order.status">
+                          <option value="PAGATO">PAGATO</option>
+                          <option value="IN LAVORAZIONE">IN LAVORAZIONE</option>
+                          <option value="SPEDITO">SPEDITO</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                        <table class="table table-bordered">
+                          <thead>
+                          <tr>
+                            <th width="5%"></th>
+                            <th>Dettaglio prodotti</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr *ngFor="let detail of order.cart; index as i">
+                            <td>{{i + 1}}</td>
+                            <td>{{deleteNullValues(detail) | json}}</td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <button class="btn btn-outline-aragon mt-2 col-xl-12 col-lg-12 col-md-12 col-sm-12"
+                            (click)="updatePurchase(order)">Aggiorna Ordine
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 </div>
+

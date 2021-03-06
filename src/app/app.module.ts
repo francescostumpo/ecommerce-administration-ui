@@ -17,9 +17,10 @@ import { SubCategoriesComponent } from './components/anagrafica/sub-categories/s
 import { TagsComponent } from './components/anagrafica/tags/tags.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {FormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {DataTablesModule} from 'angular-datatables';
 import { ArtistsComponent } from './components/anagrafica/artists/artists.component';
+import {TokenInterceptor} from './token-interceptor';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,11 @@ import { ArtistsComponent } from './components/anagrafica/artists/artists.compon
         FormsModule,
         DataTablesModule
     ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

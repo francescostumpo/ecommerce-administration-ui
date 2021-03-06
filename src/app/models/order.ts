@@ -9,6 +9,7 @@ export class Order {
   customerEmail: string;
   phoneNumber: string;
   purchaseDate: Date;
+  status: string;
   cart: Array<JSON>;
   purchaseLocation: string;
 }

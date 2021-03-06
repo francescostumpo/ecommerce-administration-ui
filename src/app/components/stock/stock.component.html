@@ -1,8 +1,238 @@
 <div class="bg-img-homepage">
-  <p class="text-center header-title"><span>Stock</span></p>
-  <section class="bg-section">
+  <section class="from-fixed-navbar">
     <div class="container-fluid">
       <div class="row row-margin">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="card mb-4">
+            <div class="card-body row">
+              <p class="mt-3 ml-3" style="font-size: 24px; font-weight: bold;">Gestisci Stock</p>
+              <div class="ml-auto mt-3 mr-3">
+                <!--<button ngbButton class="btn btn-outline-aragon" (click)="toggleCreateOrUpdatePanel('create')">Crea
+                  un nuovo Prodotto
+                </button>-->
+              </div>
+            </div>
+            <hr>
+            <div class="card-body row mb-3">
+              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+                <div class="card">
+                  <div class="card-body mt-2">
+                    <p style="font-weight: bold">SubCategories disponibili</p>
+                    <table class="table table-bordered">
+                      <thead>
+                      <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th></th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let subCategory of subCategoryList; index as i">
+                        <td>{{i + 1}}</td>
+                        <td>{{subCategory.name}}</td>
+                        <td class="text-center"><span style="cursor: pointer">
+                          <fa-icon [icon]="faPencilAlt"(click)="moveForUpdate(subCategory)"></fa-icon> &nbsp;
+                        </span>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12">
+                <div class="card" *ngIf="isPanelUpdateVisible">
+                  <!--<div class="card-body mt-2">
+                    <div class="form-group row" *ngIf="subCategory.options.genre">
+                      <label for="modelloUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Genere</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <select type="text" class="form-control" id="modelloUpdate" [(ngModel)]="stock.productModel">
+                          <option value="Maschile" ngValue="Maschile">Maschile</option>
+                          <option value="Femminile" ngValue="Femminile">Femminile</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row" *ngIf="subCategory.options.color">
+                      <label for="descrizioneUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Colore</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <textarea type="text" class="form-control" id="descrizioneUpdate" [(ngModel)]="productForUpdate.productDescription"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group row" *ngIf="subCategory.options.size">
+                      <label for="prezzoUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Size</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <input type="text" class="form-control" id="prezzoUpdate" [(ngModel)]="productForUpdate.price">
+                      </div>
+                    </div>
+                    <div class="form-group row" *ngIf="subCategory.options.shape">
+                      <label for="prezzoUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Forma</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <input type="text" class="form-control" id="prezzoUpdate" [(ngModel)]="productForUpdate.price">
+                      </div>
+                    </div>
+                    <div class="form-group row" *ngIf="false">
+                      <label for="prezzoUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Personalizzata</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <input type="text" class="form-control" id="prezzoUpdate" [(ngModel)]="productForUpdate.price">
+                      </div>
+                    </div>
+                    <div class="form-group row" *ngIf="subCategory.options.puzzleDimension">
+                      <label for="prezzoUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Dimensione Puzzle</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <input type="text" class="form-control" id="prezzoUpdate" [(ngModel)]="productForUpdate.price">
+                      </div>
+                    </div>
+                    <div class="form-group row" *ngIf="subCategory.options.pillowDimension">
+                      <label for="prezzoUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Dimensione Cuscino</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <input type="text" class="form-control" id="prezzoUpdate" [(ngModel)]="productForUpdate.price">
+                      </div>
+                    </div>
+                    <div class="form-group row" *ngIf="subCategory.options.teleDimension">
+                      <label for="prezzoUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Dimensione Tele</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <input type="text" class="form-control" id="prezzoUpdate" [(ngModel)]="productForUpdate.price">
+                      </div>
+                    </div>
+                    <div class="form-group row" *ngIf="subCategory.options.mouseDimension">
+                      <label for="prezzoUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Dimensione Mouse</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <input type="text" class="form-control" id="prezzoUpdate" [(ngModel)]="productForUpdate.price">
+                      </div>
+                    </div>
+                    <div class="form-group row" *ngIf="subCategory.options.socialDimension">
+                      <label for="prezzoUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Dimensione Social</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <input type="text" class="form-control" id="prezzoUpdate" [(ngModel)]="productForUpdate.price">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Varianti</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <table class="table table-bordered">
+                          <thead>
+                          <tr>
+                            <th></th>
+                            <th>Colore</th>
+                            <th>URL</th>
+                            <th><span style="cursor: pointer"><fa-icon [icon]="faPlusCircle"(click)="addRow('update')"></fa-icon></span> </th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr *ngFor="let variant of productForUpdate.variants; index as i">
+                            <td>{{i + 1}}</td>
+                            <td><input type="text" class="form-control" [(ngModel)]="variant.color"></td>
+                            <td><input type="text" class="form-control" [(ngModel)]="variant.imageUrl"></td>
+                            <td class="text-center align-middle"><span style="cursor: pointer"><fa-icon [icon]="faMinusCircle"(click)="deleteRow(variant)"></fa-icon></span></td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <button class="btn btn-outline-aragon mt-2 col-xl-12 col-lg-12 col-md-12 col-sm-12"
+                            (click)="createOrUpdateProduct('update')">Aggiorna Prodotto
+                    </button>
+                  </div>-->
+                  <div class="row">
+                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12">
+                      <div class="card-body mt-2">
+                        <p style="font-weight: bold">Stock disponibile</p>
+                    <table class="table table-bordered">
+                      <thead>
+                      <tr>
+                        <th *ngIf="subCategory.options.genre">Genere</th>
+                        <th *ngIf="subCategory.options.color">Colore</th>
+                        <th *ngIf="subCategory.options.size">Taglia</th>
+                        <th *ngIf="subCategory.options.shape">Forma</th>
+                        <th *ngIf="subCategory.options.puzzleDimension">Dim. Puzzle</th>
+                        <th *ngIf="subCategory.options.pillowDimension">Dim. Cuscino</th>
+                        <th *ngIf="subCategory.options.teleDimension">Dim. Tele</th>
+                        <th *ngIf="subCategory.options.mouseDimension">Dim. Mouse</th>
+                        <th *ngIf="subCategory.options.socialDimension">Dim. Social</th>
+                        <th width="5%">Quantità</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let stockVariant of stock.stockVariants; index as i">
+                        <td *ngIf="subCategory.options.genre">
+                          <select type="text" class="form-control" id="stockVariant_genre" [(ngModel)]="stockVariant.genre">
+                            <option value="man">Uomo</option>
+                            <option value="woman">Donna</option>
+                            <option value="kid">Bambino</option>
+                            <option value="baby">Neonato</option>
+                          </select>
+                        </td>
+                        <td class="text-center" *ngIf="subCategory.options.color" >
+                          <select type="text" class="form-control" id="stockVariant_color" [(ngModel)]="stockVariant.color">
+                            <option value="black">Nero</option>
+                            <option value="white">Bianco</option>
+                          </select>
+                        </td>
+                        <td class="text-center" *ngIf="subCategory.options.size">
+                          <select type="text" class="form-control" id="stockVariant_size" [(ngModel)]="stockVariant.size">
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                            <option value="XXL">XXL</option>
+                          </select>
+                        </td>
+                        <td class="text-center" *ngIf="subCategory.options.shape">
+                          <select type="text" class="form-control" id="stockVariant_shape" [(ngModel)]="stockVariant.shape">
+                            <option value="cuore">Cuore</option>
+                            <option value="rettangolo">Rettangolo</option>
+                            <option value="cerchio">Cerchio</option>
+                            <option value="quadrato">Quadrato</option>
+                          </select>
+                        </td>
+                        <td class="text-center" *ngIf="subCategory.options.puzzleDimension">
+                          <select type="text" class="form-control" id="stockVariant_puzzleDimension" [(ngModel)]="stockVariant.puzzleDimension">
+                            <option value="30x50">30x50</option>
+                            <option value="60x90">60x90</option>
+                          </select>
+                        </td>
+                        <td class="text-center" *ngIf="subCategory.options.pillowDimension">
+                          <select type="text" class="form-control" id="stockVariant_pillow" [(ngModel)]="stockVariant.pillowDimension">
+                            <option value="30x50">30x50</option>
+                            <option value="60x90">60x90</option>
+                          </select>
+                        </td>
+                        <td class="text-center" *ngIf="subCategory.options.teleDimension" >
+                          <select type="text" class="form-control" id="stockVariant_tele" [(ngModel)]="stockVariant.teleDimension">
+                            <option value="30x50">30x50</option>
+                            <option value="60x90">60x90</option>
+                          </select>
+                        </td>
+                        <td class="text-center" *ngIf="subCategory.options.mouseDimension">
+                          <select type="text" class="form-control" id="stockVariant_mouse" [(ngModel)]="stockVariant.mouseDimension">
+                            <option value="30x50">30x50</option>
+                            <option value="60x90">60x90</option>
+                          </select>
+                        </td>
+                        <td class="text-center" *ngIf="subCategory.options.socialDimension">
+                          <select type="text" class="form-control" id="stockVariant_social" [(ngModel)]="stockVariant.socialDimension">
+                            <option value="30x50">30x50</option>
+                            <option value="60x90">60x90</option>
+                          </select>
+                        </td>
+                        <td class="text-center">
+                          <input class="form-control"type="number" id="stockVariant_quantity" [(ngModel)]="stockVariant.quantity">
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                      </div>
+                  </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mt-3">
+                    <button class="btn btn-outline-aragon" (click)="addStockVariant()">Aggiungi variante</button>
+                    <button class="btn btn-outline-aragon mt-3" (click)="createOrUpdateStock(stock)">Aggiorna SubCategory</button>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
