@@ -9,4 +9,6 @@ export class SubCategoryOption {
   teleDimension: boolean;
   mouseDimension: boolean;
   socialDimension: boolean;
+  plexiDimension: boolean;
+  shopperDimension: boolean;
 }

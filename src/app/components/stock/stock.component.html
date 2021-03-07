@@ -187,20 +187,22 @@
                         </td>
                         <td class="text-center" *ngIf="subCategory.options.puzzleDimension">
                           <select type="text" class="form-control" id="stockVariant_puzzleDimension" [(ngModel)]="stockVariant.puzzleDimension">
-                            <option value="30x50">30x50</option>
-                            <option value="60x90">60x90</option>
+                            <option value="20x20cm">20x20cm</option>
+                            <option value="20x30cm">20x30cm</option>
                           </select>
                         </td>
                         <td class="text-center" *ngIf="subCategory.options.pillowDimension">
                           <select type="text" class="form-control" id="stockVariant_pillow" [(ngModel)]="stockVariant.pillowDimension">
-                            <option value="30x50">30x50</option>
-                            <option value="60x90">60x90</option>
+                            <option value="30x30cm">30x30cm</option>
+                            <option value="40x40cm">40x40cm</option>
+                            <option value="70x40cm">70x40cm</option>
                           </select>
                         </td>
                         <td class="text-center" *ngIf="subCategory.options.teleDimension" >
                           <select type="text" class="form-control" id="stockVariant_tele" [(ngModel)]="stockVariant.teleDimension">
-                            <option value="30x50">30x50</option>
-                            <option value="60x90">60x90</option>
+                            <option value="35x50cm">35x50cm</option>
+                            <option value="50x70cm">50x70cm</option>
+                            <option value="70x100cm">70x100cm</option>
                           </select>
                         </td>
                         <td class="text-center" *ngIf="subCategory.options.mouseDimension">
@@ -211,8 +213,7 @@
                         </td>
                         <td class="text-center" *ngIf="subCategory.options.socialDimension">
                           <select type="text" class="form-control" id="stockVariant_social" [(ngModel)]="stockVariant.socialDimension">
-                            <option value="30x50">30x50</option>
-                            <option value="60x90">60x90</option>
+                            <option value="30x50">60x90cm</option>
                           </select>
                         </td>
                         <td class="text-center">
@@ -224,8 +225,8 @@
                       </div>
                   </div>
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 mt-3">
-                    <button class="btn btn-outline-aragon" (click)="addStockVariant()">Aggiungi variante</button>
-                    <button class="btn btn-outline-aragon mt-3" (click)="createOrUpdateStock(stock)">Aggiorna SubCategory</button>
+                    <button class="btn btn-outline-aragon mt-5" (click)="addStockVariant()">Aggiungi variante</button>
+                    <button class="btn btn-outline-aragon mt-5 ml-1" (click)="createOrUpdateStock(stock)">Aggiorna Stock</button>
                   </div>
                   </div>
                 </div>

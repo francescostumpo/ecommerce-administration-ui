@@ -85,7 +85,7 @@ export class OrdersComponent implements OnInit {
   deleteNullValues(detail: JSON): JSON {
     $.each(detail, (key, value) => {
       // @ts-ignore
-      if (value === '' || value === null || key === 'productSubCategoryId' || key === 'tags'){
+      if (value === '' || value === null || key === 'productSubCategoryId' || key === 'tags' || key === 'productDescription'){
         delete detail[key];
       }
     });

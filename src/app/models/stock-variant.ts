@@ -10,5 +10,7 @@ export class StockVariant {
   teleDimension: string;
   mouseDimension: string;
   socialDimension: string;
+  plexiDimension: string;
+  shopperDimension: string;
   quantity: number;
 }

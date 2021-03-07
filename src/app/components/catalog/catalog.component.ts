@@ -56,6 +56,7 @@ export class CatalogComponent implements OnInit {
     this.getAllSubCategories();
     this.getAllTags();
     this.dtOptions = {
+      columnDefs: [{targets: 0, type: 'number'}],
       ordering: true,
       pagingType: 'full_numbers',
       pageLength: 10
