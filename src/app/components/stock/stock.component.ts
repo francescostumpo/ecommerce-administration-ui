@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {SubCategoryService} from '../../services/sub-category.service';
 import {SubCategory} from '../../models/sub-category';
 import {SubCategoryOption} from '../../models/sub-category-option';
@@ -6,6 +6,9 @@ import {faPencilAlt} from '@fortawesome/free-solid-svg-icons';
 import {StockService} from '../../services/stock.service';
 import {Stock} from '../../models/stock';
 import {StockVariant} from '../../models/stock-variant';
+import {DataTableDirective} from 'angular-datatables';
+import {Subject} from 'rxjs';
+import {Choicelist} from '../../models/choicelist';
 
 @Component({
   selector: 'app-stock',
@@ -23,22 +26,51 @@ export class StockComponent implements OnInit {
   subCategoryForUpdate: SubCategory;
   subCategoryList: Array<SubCategory>;
   stock: Stock;
+  choiceList: Choicelist;
   subCategoryOption: SubCategoryOption;
+
+  @ViewChild(DataTableDirective, {static: false})
+  dtElement: DataTableDirective;
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>();
+  searchStatus: string;
 
   constructor(private subCategoryService: SubCategoryService, private stockService: StockService) {
     this.stock = new Stock();
     this.subCategory = new SubCategory();
+    this.choiceList = new Choicelist();
   }
 
   ngOnInit(): void {
+    this.dtOptions = {
+      ordering: true,
+      pagingType: 'full_numbers',
+      pageLength: 10
+    };
     this.getAllSubCategories();
+    this.getChoiceList();
+  }
+
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      dtInstance.destroy();
+    });
   }
 
   getAllSubCategories(): void {
     this.subCategoryService.getAllSubCategories().subscribe(res => {
       // @ts-ignore
       this.subCategoryList = res.body;
+      this.dtTrigger.next();
       console.log('Available SubCategories: ', this.subCategoryList);
+    });
+  }
+
+  getChoiceList(): void {
+    this.stockService.getChoiceList().subscribe(res => {
+      // @ts-ignore
+      this.choiceList = res.body;
+      console.log('Available ChoiceList: ', this.choiceList);
     });
   }
 

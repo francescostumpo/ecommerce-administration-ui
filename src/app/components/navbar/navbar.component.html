@@ -12,13 +12,13 @@
     <ul ngbNav class="mr-auto">
       <li ngbNavItem class="mr-3">
         <a ngbNavLink routerLink="/aragonMultiservice/homepage" routerLinkActive="link-active"
-           [routerLinkActiveOptions]="{exact: true}" style="color: white">Homepage<span class="sr-only">(current)</span></a>
+           [routerLinkActiveOptions]="{exact: true}" style="color: white" *ngIf="authService.isAdmin()">Homepage<span class="sr-only">(current)</span></a>
       </li>
       <li ngbNavItem class="mr-3">
-        <a ngbNavLink routerLink="/aragonMultiservice/catalog" routerLinkActive="link-active" style="color: white">Catalogo</a>
+        <a ngbNavLink routerLink="/aragonMultiservice/catalog" routerLinkActive="link-active" style="color: white" *ngIf="authService.isAdmin()">Catalogo</a>
       </li>
       <li ngbNavItem class="mr-3" >
-        <a ngbNavLink routerLink="/aragonMultiservice/orders" routerLinkActive="link-active" style="color: white">Ordini</a>
+        <a ngbNavLink routerLink="/aragonMultiservice/orders" routerLinkActive="link-active" style="color: white" *ngIf="authService.isAdmin()">Ordini</a>
       </li>
       <!--<li ngbNavItem ngbDropdown style="cursor: pointer">
         <a class="dropdown-toggle" id="navbarDropdown" ngbNavLink ngbDropdownToggle style="color: white">
@@ -32,15 +32,15 @@
         </div>
       </li>-->
       <li ngbNavItem class="mr-3" >
-        <a ngbNavLink routerLink="/aragonMultiservice/stock" routerLinkActive="link-active" style="color: white">Stock</a>
+        <a ngbNavLink routerLink="/aragonMultiservice/stock" routerLinkActive="link-active" style="color: white" *ngIf="authService.isAdmin()">Stock</a>
       </li>
       <li ngbNavItem class="mr-3" >
         <a ngbNavLink routerLink="/aragonMultiservice/anagrafica" routerLinkActive="link-active"
-           style="color: white">Anagrafica</a>
+           style="color: white" *ngIf="authService.isAdmin()">Anagrafica</a>
       </li>
       <li ngbNavItem class="mr-3">
         <a ngbNavLink routerLink="/aragonMultiservice/reporting" routerLinkActive="link-active"
-           style="color: white">Reporting</a>
+           style="color: white"  *ngIf="authService.isAdmin() || authService.isReporter()">Reporting</a>
       </li>
       <!--<li ngbNavItem ngbDropdown class="mr-3" id="selezioneLocation">
         <a class="dropdown-toggle" ngbNavLink ngbDropdownToggle style="color: white">| &nbsp; &nbsp;

@@ -25,4 +25,12 @@ export class StockService {
     return this.httpClient
       .post<any>(environment.aragonBackendUrl + '/api/stc/createStock', stock, {headers, observe: 'response'});
   }
+
+  // tslint:disable-next-line:ban-types
+  getChoiceList(): Observable<HttpResponse<Object>>{
+    const headers = new HttpHeaders({Authorization: 'Bearer ey'});
+    // tslint:disable-next-line:no-debugger
+    return this.httpClient
+      .get<any>(environment.aragonBackendUrl + '/api/clc/getChoiceList', {headers, observe: 'response'});
+  }
 }

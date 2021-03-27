@@ -18,7 +18,7 @@
                 <div class="card">
                   <div class="card-body mt-2">
                     <p style="font-weight: bold">SubCategories disponibili</p>
-                    <table class="table table-bordered">
+                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
                       <thead>
                       <tr>
                         <th></th>
@@ -87,63 +87,9 @@
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Dimensione Puzzle</label>
+                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Dimensione</label>
                       <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
-                        <select class="form-control" id="puzzleDimensionUpdate" [(ngModel)]="subCategoryForUpdate.options.puzzleDimension">
-                          <option value="true" ngValue="true">true</option>
-                          <option value="false" ngValue="false">false</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Dimensione Cuscino</label>
-                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
-                        <select class="form-control" id="pillowDimensionUpdate" [(ngModel)]="subCategoryForUpdate.options.pillowDimension">
-                          <option value="true" ngValue="true">true</option>
-                          <option value="false" ngValue="false">false</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Dimensione Tele</label>
-                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
-                        <select class="form-control" id="teleDimensionUpdate" [(ngModel)]="subCategoryForUpdate.options.teleDimension">
-                          <option value="true" ngValue="true">true</option>
-                          <option value="false" ngValue="false">false</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Dimensione Mouse</label>
-                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
-                        <select class="form-control" id="mouseDimensionUpdate" [(ngModel)]="subCategoryForUpdate.options.mouseDimension">
-                          <option value="true" ngValue="true">true</option>
-                          <option value="false" ngValue="false">false</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Dimensione Post Sociale</label>
-                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
-                        <select class="form-control" id="socialDimensionUpdate" [(ngModel)]="subCategoryForUpdate.options.socialDimension">
-                          <option value="true" ngValue="true">true</option>
-                          <option value="false" ngValue="false">false</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="plexiDimensionUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Dimensione PlexiGlass</label>
-                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
-                        <select class="form-control" id="plexiDimensionUpdate" [(ngModel)]="subCategoryForUpdate.options.plexiDimension">
-                          <option value="true" ngValue="true">true</option>
-                          <option value="false" ngValue="false">false</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="shopperDimensionUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Dimensione Shopper</label>
-                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
-                        <select class="form-control" id="shopperDimensionUpdate" [(ngModel)]="subCategoryForUpdate.options.shopperDimension">
+                        <select class="form-control" id="puzzleDimensionUpdate" [(ngModel)]="subCategoryForUpdate.options.dimension">
                           <option value="true" ngValue="true">true</option>
                           <option value="false" ngValue="false">false</option>
                         </select>
@@ -209,63 +155,9 @@
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Dimensione Puzzle</label>
+                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Dimensione</label>
                       <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
-                        <select class="form-control" id="puzzleDimension" [(ngModel)]="subCategoryOption.puzzleDimension">
-                          <option value="true" ngValue="true">true</option>
-                          <option value="false" ngValue="false">false</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Dimensione Cuscino</label>
-                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
-                        <select class="form-control" id="pillowDimension" [(ngModel)]="subCategoryOption.pillowDimension">
-                          <option value="true" ngValue="true">true</option>
-                          <option value="false" ngValue="false">false</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Dimensione Tele</label>
-                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
-                        <select class="form-control" id="teleDimension" [(ngModel)]="subCategoryOption.teleDimension">
-                          <option value="true" ngValue="true">true</option>
-                          <option value="false" ngValue="false">false</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Dimensione Mouse</label>
-                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
-                        <select class="form-control" id="mouseDimension" [(ngModel)]="subCategoryOption.mouseDimension">
-                          <option value="true" ngValue="true">true</option>
-                          <option value="false" ngValue="false">false</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Dimensione Post Sociale</label>
-                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
-                        <select class="form-control" id="socialDimension" [(ngModel)]="subCategoryOption.socialDimension">
-                          <option value="true" ngValue="true">true</option>
-                          <option value="false" ngValue="false">false</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="plexiDimensionCreate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Dimensione PlexiGlass</label>
-                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
-                        <select class="form-control" id="plexiDimensionCreate" [(ngModel)]="subCategoryOption.plexiDimension">
-                          <option value="true" ngValue="true">true</option>
-                          <option value="false" ngValue="false">false</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="shopperDimensionCreate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Dimensione Shopper</label>
-                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
-                        <select class="form-control" id="shopperDimensionCreate" [(ngModel)]="subCategoryOption.shopperDimension">
+                        <select class="form-control" id="puzzleDimension" [(ngModel)]="subCategoryOption.dimension">
                           <option value="true" ngValue="true">true</option>
                           <option value="false" ngValue="false">false</option>
                         </select>

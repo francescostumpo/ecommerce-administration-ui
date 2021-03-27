@@ -50,6 +50,13 @@
                         <input type="text" class="form-control" id="nomeUpdate" [(ngModel)]="tagForUpdate.tagName">
                       </div>
                     </div>
+                    <div class="form-group row">
+                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">UserId Assegnatario
+                        </label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <input type="text" class="form-control" id="userIdUpdate" [(ngModel)]="tagForUpdate.userId">
+                      </div>
+                    </div>
                     <button class="btn btn-outline-aragon mt-2 col-xl-12 col-lg-12 col-md-12 col-sm-12"
                             (click)="createOrUpdateTag('update')">Aggiorna Tag
                     </button>
@@ -62,6 +69,13 @@
                         Tag</label>
                       <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
                         <input type="text" class="form-control" id="nome" [(ngModel)]="tag.tagName">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">UserId Assegnatario
+                      </label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <input type="text" class="form-control" id="userId" [(ngModel)]="tagForUpdate.userId">
                       </div>
                     </div>
                     <button class="btn btn-outline-aragon mt-2 col-xl-12 col-lg-12 col-md-12 col-sm-12"

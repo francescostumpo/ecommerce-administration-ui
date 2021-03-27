@@ -4,6 +4,7 @@ import {DownloadService} from '../../services/download.service';
 import {DateFormatterService} from '../../services/utils/dateformatter.service';
 import {TagService} from '../../services/tag.service';
 import {Tag} from '../../models/tag';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-reporting',
@@ -18,7 +19,8 @@ export class ReportingComponent implements OnInit {
   tagId: string;
 
   // tslint:disable-next-line:max-line-length
-  constructor(private reportingService: ReportingService, private downloadService: DownloadService, private dateFormatterService: DateFormatterService, private tagService: TagService) {
+  constructor(private reportingService: ReportingService, private downloadService: DownloadService, private dateFormatterService: DateFormatterService, private tagService: TagService, private authService: AuthService){
+    this.tagList = new Array<Tag>();
   }
 
   ngOnInit(): void {
@@ -29,7 +31,20 @@ export class ReportingComponent implements OnInit {
   getAllTags(): void {
     this.tagService.getAllTags().subscribe(res => {
       // @ts-ignore
-      this.tagList = res.body;
+      const possibleTags: Array<Tag> = res.body;
+      const preferredUserame = this.authService.getPreferredUserame();
+      const role = this.authService.getRoles();
+      if (role.indexOf('Amministratore') > -1) {
+        // @ts-ignore
+        this.tagList = res.body;
+      }else{
+        // tslint:disable-next-line:prefer-for-of
+        for (let i = 0; i < possibleTags.length; i++){
+          if (possibleTags[i].userId === preferredUserame){
+            this.tagList.push(possibleTags[i]);
+          }
+        }
+      }
       console.log('Available Tags: ', this.tagList);
     });
   }

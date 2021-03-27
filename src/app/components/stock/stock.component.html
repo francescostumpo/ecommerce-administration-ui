@@ -18,7 +18,7 @@
                 <div class="card">
                   <div class="card-body mt-2">
                     <p style="font-weight: bold">SubCategories disponibili</p>
-                    <table class="table table-bordered">
+                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
                       <thead>
                       <tr>
                         <th></th>
@@ -136,7 +136,7 @@
                   <div class="row">
                     <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12">
                       <div class="card-body mt-2">
-                        <p style="font-weight: bold">Stock disponibile</p>
+                        <p style="font-weight: bold">Stock disponibile - {{subCategory.name}}</p>
                     <table class="table table-bordered">
                       <thead>
                       <tr>
@@ -144,76 +144,35 @@
                         <th *ngIf="subCategory.options.color">Colore</th>
                         <th *ngIf="subCategory.options.size">Taglia</th>
                         <th *ngIf="subCategory.options.shape">Forma</th>
-                        <th *ngIf="subCategory.options.puzzleDimension">Dim. Puzzle</th>
-                        <th *ngIf="subCategory.options.pillowDimension">Dim. Cuscino</th>
-                        <th *ngIf="subCategory.options.teleDimension">Dim. Tele</th>
-                        <th *ngIf="subCategory.options.mouseDimension">Dim. Mouse</th>
-                        <th *ngIf="subCategory.options.socialDimension">Dim. Social</th>
-                        <th width="5%">Quantità</th>
+                        <th *ngIf="subCategory.options.dimension">Dimensione</th>
+                        <th width="10%">Quantità</th>
                       </tr>
                       </thead>
                       <tbody>
                       <tr *ngFor="let stockVariant of stock.stockVariants; index as i">
                         <td *ngIf="subCategory.options.genre">
                           <select type="text" class="form-control" id="stockVariant_genre" [(ngModel)]="stockVariant.genre">
-                            <option value="man">Uomo</option>
-                            <option value="woman">Donna</option>
-                            <option value="kid">Bambino</option>
-                            <option value="baby">Neonato</option>
+                            <option *ngFor="let item of choiceList.genre">{{item}}</option>
                           </select>
                         </td>
                         <td class="text-center" *ngIf="subCategory.options.color" >
                           <select type="text" class="form-control" id="stockVariant_color" [(ngModel)]="stockVariant.color">
-                            <option value="black">Nero</option>
-                            <option value="white">Bianco</option>
+                            <option *ngFor="let item of choiceList.color">{{item}}</option>
                           </select>
                         </td>
                         <td class="text-center" *ngIf="subCategory.options.size">
                           <select type="text" class="form-control" id="stockVariant_size" [(ngModel)]="stockVariant.size">
-                            <option value="S">S</option>
-                            <option value="M">M</option>
-                            <option value="L">L</option>
-                            <option value="XL">XL</option>
-                            <option value="XXL">XXL</option>
+                            <option *ngFor="let item of choiceList.size">{{item}}</option>
                           </select>
                         </td>
                         <td class="text-center" *ngIf="subCategory.options.shape">
                           <select type="text" class="form-control" id="stockVariant_shape" [(ngModel)]="stockVariant.shape">
-                            <option value="cuore">Cuore</option>
-                            <option value="rettangolo">Rettangolo</option>
-                            <option value="cerchio">Cerchio</option>
-                            <option value="quadrato">Quadrato</option>
+                            <option *ngFor="let item of choiceList.shape">{{item}}</option>
                           </select>
                         </td>
-                        <td class="text-center" *ngIf="subCategory.options.puzzleDimension">
-                          <select type="text" class="form-control" id="stockVariant_puzzleDimension" [(ngModel)]="stockVariant.puzzleDimension">
-                            <option value="20x20cm">20x20cm</option>
-                            <option value="20x30cm">20x30cm</option>
-                          </select>
-                        </td>
-                        <td class="text-center" *ngIf="subCategory.options.pillowDimension">
-                          <select type="text" class="form-control" id="stockVariant_pillow" [(ngModel)]="stockVariant.pillowDimension">
-                            <option value="30x30cm">30x30cm</option>
-                            <option value="40x40cm">40x40cm</option>
-                            <option value="70x40cm">70x40cm</option>
-                          </select>
-                        </td>
-                        <td class="text-center" *ngIf="subCategory.options.teleDimension" >
-                          <select type="text" class="form-control" id="stockVariant_tele" [(ngModel)]="stockVariant.teleDimension">
-                            <option value="35x50cm">35x50cm</option>
-                            <option value="50x70cm">50x70cm</option>
-                            <option value="70x100cm">70x100cm</option>
-                          </select>
-                        </td>
-                        <td class="text-center" *ngIf="subCategory.options.mouseDimension">
-                          <select type="text" class="form-control" id="stockVariant_mouse" [(ngModel)]="stockVariant.mouseDimension">
-                            <option value="30x50">30x50</option>
-                            <option value="60x90">60x90</option>
-                          </select>
-                        </td>
-                        <td class="text-center" *ngIf="subCategory.options.socialDimension">
-                          <select type="text" class="form-control" id="stockVariant_social" [(ngModel)]="stockVariant.socialDimension">
-                            <option value="30x50">60x90cm</option>
+                        <td class="text-center" *ngIf="subCategory.options.dimension">
+                          <select type="text" class="form-control" id="stockVariant_dimension" [(ngModel)]="stockVariant.dimension">
+                            <option *ngFor="let item of choiceList.dimension">{{item}}</option>
                           </select>
                         </td>
                         <td class="text-center">

@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {faPencilAlt} from '@fortawesome/free-solid-svg-icons';
 import {SubCategory} from '../../../models/sub-category';
 import {SubCategoryService} from '../../../services/sub-category.service';
 import {Category} from '../../../models/category';
 import {SubCategoryOption} from '../../../models/sub-category-option';
+import {DataTableDirective} from 'angular-datatables';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'app-sub-categories',
@@ -22,6 +24,12 @@ export class SubCategoriesComponent implements OnInit {
   subCategoryList: Array<SubCategory>;
   subCategoryOption: SubCategoryOption;
 
+  @ViewChild(DataTableDirective, {static: false})
+  dtElement: DataTableDirective;
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>();
+  searchStatus: string;
+
   constructor(private subCategoryService: SubCategoryService) {
     this.subCategory = new SubCategory();
     this.subCategoryForUpdate = new SubCategory();
@@ -29,6 +37,11 @@ export class SubCategoriesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.dtOptions = {
+      ordering: true,
+      pagingType: 'full_numbers',
+      pageLength: 10
+    };
     this.getAllSubCategories();
   }
 
@@ -36,7 +49,14 @@ export class SubCategoriesComponent implements OnInit {
     this.subCategoryService.getAllSubCategories().subscribe(res => {
       // @ts-ignore
       this.subCategoryList = res.body;
+      this.dtTrigger.next();
       console.log('Available SubCategories: ', this.subCategoryList);
+    });
+  }
+
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      dtInstance.destroy();
     });
   }
 
@@ -64,6 +84,7 @@ export class SubCategoriesComponent implements OnInit {
       subCategory.options = this.subCategoryOption;
     }
     this.subCategoryService.createOrUpdateSubCategory(subCategory).subscribe(res => {
+      this.rerender();
       // @ts-ignore
       console.log('Response: ', res.body);
       // @ts-ignore

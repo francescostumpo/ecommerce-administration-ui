@@ -89,7 +89,9 @@
                           <tbody>
                           <tr *ngFor="let variant of productForUpdate.variants; index as i">
                             <td>{{i + 1}}</td>
-                            <td><input type="text" class="form-control" [(ngModel)]="variant.color"></td>
+                            <td><select type="text" class="form-control" [(ngModel)]="variant.color">
+                              <option *ngFor="let item of choiceList.color">{{item}}</option>
+                            </select></td>
                             <td><input type="text" class="form-control" [(ngModel)]="variant.imageUrl"></td>
                             <td class="text-center align-middle"><span style="cursor: pointer"><fa-icon [icon]="faMinusCircle"(click)="deleteRow(variant)"></fa-icon></span></td>
                           </tr>
@@ -144,7 +146,9 @@
                           <tbody>
                           <tr *ngFor="let variant of product.variants; index as i">
                             <td>{{i + 1}}</td>
-                            <td><input type="text" class="form-control" [(ngModel)]="variant.color"></td>
+                            <td><select type="text" class="form-control" [(ngModel)]="variant.color">
+                              <option *ngFor="let item of choiceList.color">{{item}}</option>
+                            </select></td>
                             <td><input type="text" class="form-control" [(ngModel)]="variant.imageUrl"></td>
                             <td class="text-center align-middle"><span style="cursor: pointer"><fa-icon [icon]="faMinusCircle"(click)="deleteRow(variant)"></fa-icon></span></td>
                           </tr>

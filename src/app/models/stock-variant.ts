@@ -5,12 +5,6 @@ export class StockVariant {
   size: string;
   shape: string;
   custom: string;
-  puzzleDimension: string;
-  pillowDimension: string;
-  teleDimension: string;
-  mouseDimension: string;
-  socialDimension: string;
-  plexiDimension: string;
-  shopperDimension: string;
+  dimension: string;
   quantity: number;
 }

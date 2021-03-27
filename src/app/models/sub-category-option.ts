@@ -4,11 +4,5 @@ export class SubCategoryOption {
   genre: boolean;
   shape: boolean;
   custom: boolean;
-  puzzleDimension: boolean;
-  pillowDimension: boolean;
-  teleDimension: boolean;
-  mouseDimension: boolean;
-  socialDimension: boolean;
-  plexiDimension: boolean;
-  shopperDimension: boolean;
+  dimension: boolean;
 }

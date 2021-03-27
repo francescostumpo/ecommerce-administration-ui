@@ -10,6 +10,8 @@ import {Tag} from '../../models/tag';
 import {Variant} from '../../models/variant';
 import {Subject} from 'rxjs';
 import {DataTableDirective} from 'angular-datatables';
+import {StockService} from '../../services/stock.service';
+import {Choicelist} from '../../models/choicelist';
 
 
 @Component({
@@ -38,23 +40,26 @@ export class CatalogComponent implements OnInit {
   tag: Tag;
   tagList: Array<Tag>;
   productTagList: Array<Tag>;
+  choiceList: Choicelist;
 
   @ViewChild(DataTableDirective, {static: false})
   dtElement: DataTableDirective;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
 
-  constructor(private subCategoryService: SubCategoryService, private tagsService: TagService, private productService: ProductService) {
+  constructor(private subCategoryService: SubCategoryService, private tagsService: TagService, private productService: ProductService, private stockService: StockService) {
     this.product = new Product();
     this.productForUpdate = new Product();
     this.subCategory = new SubCategory();
     this.tag = new Tag();
+    this.choiceList = new Choicelist();
   }
 
   ngOnInit(): void {
     this.getAllProducts();
     this.getAllSubCategories();
     this.getAllTags();
+    this.getChoiceList();
     this.dtOptions = {
       columnDefs: [{targets: 0, type: 'number'}],
       ordering: true,
@@ -75,6 +80,14 @@ export class CatalogComponent implements OnInit {
       // @ts-ignore
       this.tagList = res.body;
       console.log('Available Tags: ', this.subCategoryList);
+    });
+  }
+
+  getChoiceList(): void {
+    this.stockService.getChoiceList().subscribe(res => {
+      // @ts-ignore
+      this.choiceList = res.body;
+      console.log('Available ChoiceList: ', this.choiceList);
     });
   }
 
@@ -227,7 +240,10 @@ export class CatalogComponent implements OnInit {
   }
 
   addRow(action: string): void {
-    if (action === 'update') {
+    if (action === 'update' && this.productForUpdate.variants !== null) {
+      this.productForUpdate.variants.push(new Variant());
+    }else if (action === 'update' && this.productForUpdate.variants === null){
+      this.productForUpdate.variants = new Array<Variant>();
       this.productForUpdate.variants.push(new Variant());
     }else{
       this.product.variants = new Array<Variant>();
