@@ -21,18 +21,16 @@
                     <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"  class="row-border hover">
                       <thead>
                       <tr>
-                        <th></th>
+                        <th>SubCategory</th>
                         <th>Nome Prodotto</th>
-                        <th>Modello</th>
                         <th>Prezzo</th>
                         <th></th>
                       </tr>
                       </thead>
                       <tbody>
                       <tr *ngFor="let product of productList; index as i">
-                        <td>{{i + 1}}</td>
+                        <td>{{product.productSubCategoryName}}</td>
                         <td>{{product.name}}</td>
-                        <td>{{product.productModel}}</td>
                         <td>{{product.price}}</td>
                         <td class="text-center"><span style="cursor: pointer">
                           <fa-icon [icon]="faPencilAlt"(click)="moveForUpdate(product)"></fa-icon> &nbsp;
@@ -199,7 +197,7 @@
                         </thead>
                         <tbody>
                         <tr *ngFor="let subCategory of subCategoryList; index as i">
-                          <td>{{i + 1}}</td>
+                          <td>{{i + 1 | number}}</td>
                           <td>{{subCategory.name}}</td>
                           <td class="text-center"><span style="cursor: pointer" >
                             <fa-icon *ngIf="(productForUpdate.productSubCategoryId !== null) && (productForUpdate.productSubCategoryId !== subCategory._id)" [icon]="faPlusCircle"(click)="addSubCategoryToProduct(subCategory)"></fa-icon>

@@ -7,6 +7,7 @@ export class Product {
  name: string;
  categoryId: string;
  productSubCategoryId: string;
+ productSubCategoryName: string;
  productDescription: string;
  productModel: string;
  price: number;

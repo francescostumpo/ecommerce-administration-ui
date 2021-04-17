@@ -12,6 +12,7 @@ export class HomepageComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, public authService: AuthService) { }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
   }
 
   goToView(location: string): void {

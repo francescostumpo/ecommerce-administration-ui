@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   ngOnInit() {
+    window.scrollTo(0, 0);
   }
 
   goToApp(): void {

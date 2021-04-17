@@ -37,6 +37,7 @@ export class SubCategoriesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     this.dtOptions = {
       ordering: true,
       pagingType: 'full_numbers',
