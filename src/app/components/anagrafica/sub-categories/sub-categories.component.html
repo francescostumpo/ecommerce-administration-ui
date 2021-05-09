@@ -57,6 +57,12 @@
                       </div>
                     </div>
                     <div class="form-group row">
+                      <label for="imageUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Url Immagine</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <input type="text" class="form-control" id="imageUpdate" [(ngModel)]="subCategoryForUpdate.imageUrl">
+                      </div>
+                    </div>
+                    <div class="form-group row">
                       <label for="nomeUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Colore</label>
                       <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
                         <select class="form-control" id="colorUpdate" [(ngModel)]="subCategoryForUpdate.options.color">
@@ -122,6 +128,12 @@
                         SubCategory</label>
                       <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
                         <input type="text" class="form-control" id="nome" [(ngModel)]="subCategory.name">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="imageCreate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Url Immagine</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <input type="text" class="form-control" id="imageCreate" [(ngModel)]="subCategory.imageUrl">
                       </div>
                     </div>
                     <div class="form-group row">

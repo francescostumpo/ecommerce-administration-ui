@@ -6,5 +6,6 @@ export class StockVariant {
   shape: string;
   custom: string;
   dimension: string;
+  price: number;
   quantity: number;
 }

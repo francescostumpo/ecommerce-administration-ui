@@ -80,6 +80,7 @@ export class SubCategoriesComponent implements OnInit {
     let subCategory: SubCategory;
     if (action === 'update') {
       subCategory = this.subCategoryForUpdate;
+      console.log(subCategory);
     } else {
       subCategory = this.subCategory;
       subCategory.options = this.subCategoryOption;

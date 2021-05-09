@@ -15,6 +15,6 @@ export class AnagraficaComponent implements OnInit {
   }
 
   goToView(location: string): void {
-    this.router.navigate(['aragonMultiservice/anagrafica/' + location]);
+      this.router.navigate(['aragonMultiservice/anagrafica/' + location]);
   }
 }

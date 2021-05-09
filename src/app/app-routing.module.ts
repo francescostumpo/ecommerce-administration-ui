@@ -12,6 +12,7 @@ import {SubCategoriesComponent} from './components/anagrafica/sub-categories/sub
 import {TagsComponent} from './components/anagrafica/tags/tags.component';
 import {ArtistsComponent} from './components/anagrafica/artists/artists.component';
 import {AuthGuardService} from './services/auth-guard.service';
+import {DiscountCodesComponent} from './components/anagrafica/discount-codes/discount-codes.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'aragonMultiservice', pathMatch: 'full'},
@@ -80,6 +81,13 @@ const routes: Routes = [
   {
     path: 'aragonMultiservice/anagrafica/tags',
     component: TagsComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuardService],
+    data: {expectedRoles: ['Amministratore']}
+  },
+  {
+    path: 'aragonMultiservice/anagrafica/discountCodes',
+    component: DiscountCodesComponent,
     pathMatch: 'full',
     canActivate: [AuthGuardService],
     data: {expectedRoles: ['Amministratore']}

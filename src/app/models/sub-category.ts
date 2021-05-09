@@ -5,8 +5,8 @@ export class SubCategory {
   _id: string;
   _rev: string;
   name: string;
-  categoryId: string;
   imageUrl: string;
+  categoryId: string;
   options: SubCategoryOption;
 
 }

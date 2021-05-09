@@ -145,6 +145,7 @@
                         <th *ngIf="subCategory.options.size">Taglia</th>
                         <th *ngIf="subCategory.options.shape">Forma</th>
                         <th *ngIf="subCategory.options.dimension">Dimensione</th>
+                        <th width="10%">Prezzo</th>
                         <th width="10%">Quantità</th>
                       </tr>
                       </thead>
@@ -174,6 +175,9 @@
                           <select type="text" class="form-control" id="stockVariant_dimension" [(ngModel)]="stockVariant.dimension">
                             <option *ngFor="let item of choiceList.dimension">{{item}}</option>
                           </select>
+                        </td>
+                        <td class="text-center">
+                          <input class="form-control"type="text" id="stockVariant_price" [(ngModel)]="stockVariant.price">
                         </td>
                         <td class="text-center">
                           <input class="form-control"type="number" id="stockVariant_quantity" [(ngModel)]="stockVariant.quantity">

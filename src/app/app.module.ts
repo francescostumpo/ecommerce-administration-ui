@@ -21,6 +21,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {DataTablesModule} from 'angular-datatables';
 import { ArtistsComponent } from './components/anagrafica/artists/artists.component';
 import {TokenInterceptor} from './token-interceptor';
+import { DiscountCodesComponent } from './components/anagrafica/discount-codes/discount-codes.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import {TokenInterceptor} from './token-interceptor';
     SubCategoriesComponent,
     TagsComponent,
     ArtistsComponent,
+    DiscountCodesComponent,
   ],
     imports: [
         BrowserModule,

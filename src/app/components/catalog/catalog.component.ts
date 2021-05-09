@@ -105,7 +105,7 @@ export class CatalogComponent implements OnInit {
       // @ts-ignore
       this.productList = res.body;
       this.dtTrigger.next();
-      console.log('Available Products: ', this.subCategoryList);
+      console.log('Available Products: ', this.productList);
     });
   }
 
