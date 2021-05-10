@@ -11,7 +11,6 @@ export class TokenInterceptor implements HttpInterceptor {
     const modified = req.clone({
       setHeaders: {Authorization: 'Bearer AwUiTMoipE' }
     });
-    console.log(req);
     document.getElementById('loading').style.display = 'block';
     return next.handle(modified).pipe(
       finalize(() => {
