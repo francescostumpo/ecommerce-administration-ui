@@ -56,7 +56,8 @@ export class DiscountCodesComponent implements OnInit {
       this.tag = {};
       this.getAllDiscountCodes();
     }, error => {
-      alert(error.message.message);
+      alert(error.status + ' ' + error.statusText);
+      this.getAllDiscountCodes();
     });
   }
 

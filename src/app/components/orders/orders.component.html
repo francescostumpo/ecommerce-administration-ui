@@ -10,6 +10,7 @@
                 <div class="form-group row">
                   <select type="text" class="form-control" id="searchStatus" [(ngModel)]="searchStatus" (change)="getOrders()">
                     <option value="TUTTI">TUTTI</option>
+                    <option value="DA PAGARE">DA PAGARE</option>
                     <option value="PAGATO">PAGATO</option>
                     <option value="IN LAVORAZIONE">IN LAVORAZIONE</option>
                     <option value="SPEDITO">SPEDITO</option>
@@ -106,6 +107,7 @@
                       <label for="status" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Stato Ordine</label>
                       <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
                         <select type="text" class="form-control" id="status" [(ngModel)]="order.status">
+                          <option value="DA PAGARE">DA PAGARE</option>
                           <option value="PAGATO">PAGATO</option>
                           <option value="IN LAVORAZIONE">IN LAVORAZIONE</option>
                           <option value="SPEDITO">SPEDITO</option>

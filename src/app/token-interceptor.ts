@@ -9,7 +9,7 @@ export class TokenInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.serviceCounts++;
     const modified = req.clone({
-      setHeaders: {Authorization: 'Bearer ey' }
+      setHeaders: {Authorization: 'Bearer AwUiTMoipE' }
     });
     console.log(req);
     document.getElementById('loading').style.display = 'block';

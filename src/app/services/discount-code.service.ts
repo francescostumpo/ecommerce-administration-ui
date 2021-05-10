@@ -21,7 +21,7 @@ export class DiscountCodeService {
 
   // tslint:disable-next-line:ban-types
   createOrUpdateDiscountCode(discountCode: DiscountCode): Observable<HttpResponse<Object>> {
-    const headers = new HttpHeaders({Authorization: 'Bearer ey'});
+    const headers = new HttpHeaders({Authorization: 'Bearer AwUiTMoipE'});
     return this.httpClient
       .post<any>(environment.aragonBackendUrl + '/api/disc/createOrUpdateDiscountCode', discountCode, {headers, observe: 'response'});
   }
