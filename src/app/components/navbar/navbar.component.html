@@ -42,6 +42,10 @@
         <a ngbNavLink routerLink="/aragonMultiservice/reporting" routerLinkActive="link-active"
            style="color: white"  *ngIf="authService.isAdmin() || authService.isReporter()">Reporting</a>
       </li>
+      <li ngbNavItem class="mr-3">
+        <a ngbNavLink routerLink="/aragonMultiservice/faq" routerLinkActive="link-active"
+           style="color: white"  *ngIf="authService.isAdmin() || authService.isReporter()">FAQ</a>
+      </li>
       <!--<li ngbNavItem ngbDropdown class="mr-3" id="selezioneLocation">
         <a class="dropdown-toggle" ngbNavLink ngbDropdownToggle style="color: white">| &nbsp; &nbsp;
           {{getLocation()}}</a>

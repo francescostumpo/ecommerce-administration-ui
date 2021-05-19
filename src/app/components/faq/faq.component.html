@@ -1,0 +1,155 @@
+<div class="bg-img-homepage">
+  <section class="from-fixed-navbar">
+    <div class="container-fluid">
+      <div class="row row-margin">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="card mb-4">
+            <div class="card-body row">
+              <p class="mt-3 ml-3" style="font-size: 24px; font-weight: bold;">Gestisci FAQ</p>
+              <div class="ml-auto mt-3 mr-3">
+                <button ngbButton class="btn btn-outline-aragon" (click)="toggleCreateOrUpdatePanel('create')">Aggiungi una nuova FAQ
+                </button>
+              </div>
+            </div>
+            <hr>
+            <div class="card-body row mb-3">
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <div class="card">
+                  <div class="card-body mt-2">
+                    <p style="font-weight: bold">FAQ disponibili</p>
+                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Pos.</th>
+                          <th>Nome</th>
+                          <th></th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let faq of faqsList">
+                          <td class="text-center">{{faq.position}}</td>
+                          <td>{{faq.question}}</td>
+                          <td class="text-center">
+                            <span style="cursor: pointer">
+                              <fa-icon [icon]="faPencilAlt"(click)="moveForUpdate(faq)"></fa-icon> &nbsp;
+                            </span>
+                          </td>
+                          <td class="text-center"><span style="cursor: pointer">
+                            <fa-icon [icon]="faTrash"(click)="deleteFaq(faq)"></fa-icon> &nbsp;
+                          </span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <div class="card" *ngIf="isPanelUpdateVisible">
+                  <div class="card-body mt-2">
+                    <div class="form-group row">
+                      <label for="positionUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">
+                        Position</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <input type="number" class="form-control" id="positionUpdate" [(ngModel)]="faqForUpdate.position">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="questionUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">
+                        Question</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <input type="text" class="form-control" id="questionUpdate" [(ngModel)]="faqForUpdate.question">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="answerUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">
+                        Answer</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <textarea type="text" class="form-control" id="answerUpdate" [(ngModel)]="faqForUpdate.answer" [rows]="(faqForUpdate.answer.length / 35)"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="imageUrlUpdate" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Image Url</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <input type="text" class="form-control" id="imageUrlUpdate" [(ngModel)]="faqForUpdate.imageUrl">
+                      </div>
+                    </div>
+                    <br>
+                    <h2>Sub Paragraph</h2>
+                    <div class="form-group row sub-paragraph-row" *ngFor="let subParagraph of faqForUpdate.subParagraphs; index as i">
+                      <label [htmlFor]="'title' + i" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label sub-paragraph-title">Title</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 sub-paragraph-title">
+                        <input type="text" class="form-control" [id]="'title' + i" [(ngModel)]="subParagraph.title">
+                      </div>
+                      <label [htmlFor]="'body' + i" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label sub-paragraph-body">Body</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 sub-paragraph-body">
+                        <textarea type="text" class="form-control" [id]="'body' + i" [(ngModel)]="subParagraph.body" [rows]="getSubBodyLength(i, subParagraph)"></textarea>
+
+                      </div>
+                      <div class="sub-paragraph-icons">
+                        <fa-icon [icon]="faTrash" (click)="removeFaqSub(i, 'update')" class="pointer"></fa-icon>
+                      </div>
+
+                    </div>
+                    <div class="sub-paragraph-icons">
+                      <fa-icon  [icon]="faPlus" (click)="addFaqSub('update')" class="pointer"></fa-icon>
+                    </div>
+                    <button class="btn btn-outline-aragon mt-2 col-xl-12 col-lg-12 col-md-12 col-sm-12"
+                            (click)="createOrUpdateFaq('update')">Aggiorna FAQ
+                    </button>
+                  </div>
+                </div>
+                <div class="card" *ngIf="isPanelCreateVisible">
+                  <div class="card-body mt-2">
+                    <div class="form-group row">
+                      <label for="question" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Question</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <input type="text" class="form-control" id="question" [(ngModel)]="faq.question">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="answer" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Answer</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <textarea type="text" class="form-control" id="answer" [(ngModel)]="faq.answer" [rows]="10"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="imageUrl" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label">Image Url</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                        <input type="text" class="form-control" id="imageUrl" [(ngModel)]="faq.imageUrl">
+                      </div>
+                    </div>
+                    <br>
+                    <h2>Sub Paragraph</h2>
+                    <div class="form-group row sub-paragraph-row" *ngFor="let subParagraph of faq.subParagraphs; index as i">
+                      <label [htmlFor]="'title' + i" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label sub-paragraph-title">Title</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 sub-paragraph-title">
+                        <input type="text" class="form-control" [id]="'titleC' + i" [(ngModel)]="subParagraph.title">
+                      </div>
+                      <label [htmlFor]="'body' + i" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label sub-paragraph-body">Body</label>
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 sub-paragraph-body">
+                        <textarea type="text" class="form-control" [id]="'bodyC' + i" [(ngModel)]="subParagraph.body" [rows]="getSubBodyLength(i, subParagraph)"></textarea>
+
+                      </div>
+                      <div class="sub-paragraph-icons">
+                        <fa-icon [icon]="faTrash" (click)="removeFaqSub(i, 'create')" class="pointer"></fa-icon>
+                      </div>
+
+                    </div>
+                    <div class="sub-paragraph-icons">
+                      <fa-icon  [icon]="faPlus" (click)="addFaqSub('create')" class="pointer"></fa-icon>
+                    </div>
+                    <button class="btn btn-outline-aragon mt-2 col-xl-12 col-lg-12 col-md-12 col-sm-12"
+                            (click)="createOrUpdateFaq('create')">Crea FAQ
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -22,7 +22,7 @@ import {DataTablesModule} from 'angular-datatables';
 import { ArtistsComponent } from './components/anagrafica/artists/artists.component';
 import {TokenInterceptor} from './token-interceptor';
 import { DiscountCodesComponent } from './components/anagrafica/discount-codes/discount-codes.component';
-
+import {FaqComponent} from './components/faq/faq.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +39,7 @@ import { DiscountCodesComponent } from './components/anagrafica/discount-codes/d
     TagsComponent,
     ArtistsComponent,
     DiscountCodesComponent,
+    FaqComponent,
   ],
     imports: [
         BrowserModule,

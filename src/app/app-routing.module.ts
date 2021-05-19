@@ -13,6 +13,7 @@ import {TagsComponent} from './components/anagrafica/tags/tags.component';
 import {ArtistsComponent} from './components/anagrafica/artists/artists.component';
 import {AuthGuardService} from './services/auth-guard.service';
 import {DiscountCodesComponent} from './components/anagrafica/discount-codes/discount-codes.component';
+import {FaqComponent} from './components/faq/faq.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'aragonMultiservice', pathMatch: 'full'},
@@ -95,6 +96,13 @@ const routes: Routes = [
   {
     path: 'aragonMultiservice/reporting',
     component: ReportingComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuardService],
+    data: {expectedRoles: ['Amministratore', 'Reporter']}
+  },
+  {
+    path: 'aragonMultiservice/faq',
+    component: FaqComponent,
     pathMatch: 'full',
     canActivate: [AuthGuardService],
     data: {expectedRoles: ['Amministratore', 'Reporter']}

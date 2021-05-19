@@ -47,7 +47,17 @@
                   </div>
                 </div>
               </div>
-              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12" *ngIf="authService.isReporter()">
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12" *ngIf="authService.isAdmin()">
+                <div class="card card-selection mt-3" style="cursor: pointer"
+                     (click)="goToView('faq')">
+                  <div class="card-body text-center mt-2">
+                    <p class="mt-2" style="font-size: 20px;">
+                      Gestisci le FAQ
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12" *ngIf="authService.isAdmin()">
                 <div class="card card-selection mt-3" style="cursor: pointer"
                      (click)="goToView('reporting')">
                   <div class="card-body text-center mt-2">
