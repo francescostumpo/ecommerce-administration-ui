@@ -6,6 +6,7 @@ export class Order {
   customerName: string;
   customerSurname: string;
   customerAddress: string;
+  customerCountry: string;
   customerEmail: string;
   phoneNumber: string;
   purchaseDate: Date;
